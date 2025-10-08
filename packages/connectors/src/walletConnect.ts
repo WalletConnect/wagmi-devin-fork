@@ -170,7 +170,7 @@ export function walletConnect(parameters: WalletConnectParameters) {
         }
 
         // If session exists and chains are authorized, enable provider for required chain
-        const accounts = (await provider.enable()).map((x) => getAddress(x))
+        const accounts = (await provider.enable()).map((x: string) => getAddress(x))
 
         // Switch to chain if provided
         let currentChainId = await this.getChainId()
@@ -216,7 +216,7 @@ export function walletConnect(parameters: WalletConnectParameters) {
 
         return {
           accounts: (withCapabilities
-            ? accounts.map((address) => ({ address, capabilities: {} }))
+            ? accounts.map((address: string) => ({ address, capabilities: {} }))
             : accounts) as never,
           chainId: currentChainId,
         }
@@ -264,7 +264,7 @@ export function walletConnect(parameters: WalletConnectParameters) {
     },
     async getAccounts() {
       const provider = await this.getProvider()
-      return provider.accounts.map((x) => getAddress(x))
+      return provider.accounts.map((x: string) => getAddress(x))
     },
     async getProvider({ chainId } = {}) {
       async function initProvider() {
@@ -451,7 +451,7 @@ export function walletConnect(parameters: WalletConnectParameters) {
     getNamespaceChainsIds() {
       if (!provider_) return []
       const chainIds = provider_.session?.namespaces[NAMESPACE]?.accounts?.map(
-        (account) => Number.parseInt(account.split(':')[1] || '', 10),
+        (account: string) => Number.parseInt(account.split(':')[1] || '', 10),
       )
       return chainIds ?? []
     },
