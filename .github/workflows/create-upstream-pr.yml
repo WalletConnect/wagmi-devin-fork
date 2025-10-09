@@ -42,7 +42,7 @@ jobs:
       - name: Check if PR already exists
         id: check_pr
         env:
-          GH_TOKEN: ${{ secrets.UPSTREAM_PR_TOKEN }}
+          GH_TOKEN: ${{ secrets.UPSTREAM_PR_PAT }}
         run: |
           PR_EXISTS=$(gh pr list \
             --repo wevm/wagmi \
@@ -67,7 +67,7 @@ jobs:
       - name: Create PR to upstream
         if: steps.check_pr.outputs.exists == '0'
         env:
-          GH_TOKEN: ${{ secrets.UPSTREAM_PR_TOKEN }}
+          GH_TOKEN: ${{ secrets.UPSTREAM_PR_PAT }}
         run: |
           BRANCH="${{ steps.branch.outputs.name }}"
           VERSION="${{ steps.version.outputs.version }}"
@@ -116,4 +116,4 @@ jobs:
             echo "PR URL: ${PR_URL}"
           fi
         env:
-          GH_TOKEN: ${{ secrets.UPSTREAM_PR_TOKEN }}
+          GH_TOKEN: ${{ secrets.UPSTREAM_PR_PAT }}
