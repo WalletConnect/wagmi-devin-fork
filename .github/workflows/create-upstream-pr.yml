@@ -1,0 +1,119 @@
+name: Create Upstream PR
+
+on:
+  push:
+    branches:
+      - 'chore/update-walletconnect-ethereum-provider-*'
+      - 'feat/update-walletconnect-ethereum-provider-*'
+      - 'fix/update-walletconnect-ethereum-provider-*'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to create PR from'
+        required: false
+        default: ''
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get branch name
+        id: branch
+        run: |
+          if [ -n "${{ github.event.inputs.branch }}" ]; then
+            BRANCH="${{ github.event.inputs.branch }}"
+          else
+            BRANCH="${{ github.ref_name }}"
+          fi
+          echo "name=${BRANCH}" >> $GITHUB_OUTPUT
+
+      - name: Extract version from branch
+        id: version
+        run: |
+          BRANCH="${{ steps.branch.outputs.name }}"
+          VERSION=$(echo "$BRANCH" | grep -oP '\d+\.\d+\.\d+' || echo "unknown")
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Check if PR already exists
+        id: check_pr
+        env:
+          GH_TOKEN: ${{ secrets.UPSTREAM_PR_TOKEN }}
+        run: |
+          PR_EXISTS=$(gh pr list \
+            --repo wevm/wagmi \
+            --head "WalletConnect:${{ steps.branch.outputs.name }}" \
+            --state open \
+            --json number \
+            --jq 'length')
+
+          echo "exists=${PR_EXISTS}" >> $GITHUB_OUTPUT
+
+          if [ "$PR_EXISTS" -gt 0 ]; then
+            PR_URL=$(gh pr list \
+              --repo wevm/wagmi \
+              --head "WalletConnect:${{ steps.branch.outputs.name }}" \
+              --state open \
+              --json url \
+              --jq '.[0].url')
+            echo "url=${PR_URL}" >> $GITHUB_OUTPUT
+            echo "::warning::PR already exists: ${PR_URL}"
+          fi
+
+      - name: Create PR to upstream
+        if: steps.check_pr.outputs.exists == '0'
+        env:
+          GH_TOKEN: ${{ secrets.UPSTREAM_PR_TOKEN }}
+        run: |
+          BRANCH="${{ steps.branch.outputs.name }}"
+          VERSION="${{ steps.version.outputs.version }}"
+
+          # Create PR body
+          PR_BODY="## Summary
+
+          Upgrades \`@walletconnect/ethereum-provider\` to version \`${VERSION}\`.
+
+          ## Changes
+
+          - Updated \`@walletconnect/ethereum-provider\` dependency to \`${VERSION}\`
+          - Created changeset for patch bump of \`@wagmi/connectors\`
+          - Updated lockfile
+
+          ## Reference
+
+          - Automated via: https://github.com/WalletConnect/wagmi-devin-fork
+
+          ## Testing
+
+          - [x] Local builds pass
+          - [x] Type checks pass
+          "
+
+          # Create PR
+          gh pr create \
+            --repo wevm/wagmi \
+            --head "WalletConnect:${BRANCH}" \
+            --base main \
+            --title "chore: upgrade \`@walletconnect/ethereum-provider\` to \`${VERSION}\`" \
+            --body "${PR_BODY}"
+
+      - name: Output result
+        run: |
+          if [ "${{ steps.check_pr.outputs.exists }}" -gt 0 ]; then
+            echo "✅ PR already exists: ${{ steps.check_pr.outputs.url }}"
+          else
+            echo "✅ PR created successfully"
+            PR_URL=$(gh pr list \
+              --repo wevm/wagmi \
+              --head "WalletConnect:${{ steps.branch.outputs.name }}" \
+              --state open \
+              --json url \
+              --jq '.[0].url')
+            echo "PR URL: ${PR_URL}"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.UPSTREAM_PR_TOKEN }}
