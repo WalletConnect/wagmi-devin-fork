@@ -1,5 +1,17 @@
 # @wagmi/core
 
+## 2.22.1
+
+### Patch Changes
+
+- Fixed passing `account` in `waitForTransactionReceipt` for reverted transaction. ([#4832](https://github.com/wevm/wagmi/pull/4832))
+
+## 2.22.0
+
+### Minor Changes
+
+- Added `sendTransactionSync` and `sendCallsSync` Actions. ([#4823](https://github.com/wevm/wagmi/pull/4823))
+
 ## 2.21.2
 
 ### Patch Changes

@@ -87,6 +87,7 @@ type ChainId =
   | 5 // Ethereum Testnet Goerli
   | 3 // Ethereum Testnet Ropsten
   | 4 // Ethereum Testnet Rinkeby
+  | 96969696 //  Privix Chain Testnet
   | 180 // AME Chain Mainnet
   | 78430 // Amplify Subnet
   | 1339 // Elysium Mainnet
@@ -117,6 +118,7 @@ type ChainId =
   | 200810 // Bitlayer Testnet
   | 7171 // Bitrock Mainnet
   | 7771 // Bitrock Testnet
+  | 81457 // Blast
   | 288 // Boba Network
   | 28 // Boba Network Rinkeby Testnet
   | 78431 // Bulletin Subnet
@@ -126,6 +128,7 @@ type ChainId =
   | 44787 // Celo Alfajores Testnet
   | 62320 // Celo Baklava Testnet
   | 42220 // Celo Mainnet
+  | 11142220 // Celo Sepolia Testnet
   | 5115 // Citrea Testnet
   | 78432 // Conduit Subnet
   | 1030 // Conflux eSpace
@@ -199,6 +202,7 @@ type ChainId =
   | 1890 // Lightlink Phoenix Mainnet
   | 59144 // Linea
   | 59141 // Linea Sepolia
+  | 1135 // Lisk
   | 957 // Lyra Chain
   | 22776 // MAP Protocol
   | 212 // MAPO Makalu
@@ -249,6 +253,7 @@ type ChainId =
   | 80001 // Mumbai
   | 1101 // Polygon zkEVM
   | 2442 // Polygon zkEVM Cardona Testnet
+  | 16969696 // Privix Chain Mainnet
   | 369 // PulseChain
   | 35441 // Q Mainnet
   | 35443 // Q Testnet
@@ -275,6 +280,7 @@ type ChainId =
   | 1149 // Symplexia Smart Chain
   | 57 // Syscoin Mainnet
   | 5700 // Syscoin Tanenbaum Testnet
+  | 167000 // Taiko Alethia
   | 167006 // Taiko Eldfell L3
   | 167005 // Taiko Grimsvotn L2
   | 5845 // Tangle
@@ -290,6 +296,7 @@ type ChainId =
   | 723107 // TixChain Testnet
   | 6119 // UPTN
   | 8 // Ubiq
+  | 130 // Unichain
   | 100009 // VeChain
   | 100010 // VeChain Testnet
   | 106 // Velas EVM Mainnet
@@ -305,10 +312,10 @@ type ChainId =
   | 383414847825 // Zeniq
   | 7000 // ZetaChain Mainnet
   | 7001 // ZetaChain Testnet
+  | 32769 // Zilliqa 2
   | 32770 // Zilliqa 2 EVM proto-mainnet
   | 33103 // Zilliqa 2 EVM proto-testnet
-  | 32769 // Zilliqa EVM
-  | 33101 // Zilliqa EVM Testnet
+  | 33101 // Zilliqa 2 Testnet
   | 48898 // Zircuit Garfield Testnet
   | 48900 // Zircuit Mainnet
   | 48899 // Zircuit Testnet

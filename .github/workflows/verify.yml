@@ -80,7 +80,7 @@ jobs:
     strategy:
       matrix:
         typescript-version: ['5.7.3', '5.8.3', '5.9.2', 'latest']
-        viem-version: ['2.31.7', 'latest']
+        viem-version: ['2.38.0', 'latest']
 
     steps:
       - name: Clone repository
@@ -131,7 +131,7 @@ jobs:
           version: nightly
 
       - name: Install Playwright
-        run: pnpx playwright@1.54.1 install --with-deps
+        run: pnpx playwright@1.55.1 install --with-deps
 
       - name: Run tests
         uses: nick-fields/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08

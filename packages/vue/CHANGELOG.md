@@ -1,5 +1,46 @@
 # @wagmi/vue
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [[`faf3eed`](https://github.com/wevm/wagmi/commit/faf3eeddb97c300f971083f8ee9b02a29ad23cbb)]:
+  - @wagmi/connectors@6.1.2
+
+## 0.3.0
+
+### Minor Changes
+
+- Exported internal types ([`3e634b7`](https://github.com/wevm/wagmi/commit/3e634b7bcf0bd0e67e59fcb74ad89dfb56e4eae9))
+
+### Patch Changes
+
+- Updated dependencies [[`990dd23`](https://github.com/wevm/wagmi/commit/990dd2339e96b302931056e0fb898bd2dd42a04d)]:
+  - @wagmi/connectors@6.1.1
+
+## 0.2.14
+
+### Patch Changes
+
+- Updated dependencies [[`ae31a8d`](https://github.com/wevm/wagmi/commit/ae31a8d3d0b436841d6546ab2565dee624204aca)]:
+  - @wagmi/connectors@6.1.0
+
+## 0.2.13
+
+### Patch Changes
+
+- Updated dependencies [[`74100b0`](https://github.com/wevm/wagmi/commit/74100b0dea2dfe7b057fdbe1660596554c70642e)]:
+  - @wagmi/core@2.22.1
+  - @wagmi/connectors@6.0.1
+
+## 0.2.12
+
+### Patch Changes
+
+- Updated dependencies [[`ebb2352`](https://github.com/wevm/wagmi/commit/ebb2352375e05e52d0bcf6ae1a60ac4e798bf29f)]:
+  - @wagmi/core@2.22.0
+  - @wagmi/connectors@6.0.0
+
 ## 0.2.11
 
 ### Patch Changes

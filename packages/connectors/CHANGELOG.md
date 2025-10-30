@@ -1,5 +1,37 @@
 # @wagmi/connectors
 
+## 6.1.2
+
+### Patch Changes
+
+- Bumped connector deps ([#4843](https://github.com/wevm/wagmi/pull/4843))
+
+## 6.1.1
+
+### Patch Changes
+
+- Bumped Porto version ([`990dd23`](https://github.com/wevm/wagmi/commit/990dd2339e96b302931056e0fb898bd2dd42a04d))
+
+## 6.1.0
+
+### Minor Changes
+
+- Added `getPortoInstance` method to `porto`. ([#4837](https://github.com/wevm/wagmi/pull/4837))
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`74100b0`](https://github.com/wevm/wagmi/commit/74100b0dea2dfe7b057fdbe1660596554c70642e)]:
+  - @wagmi/core@2.22.1
+
+## 6.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`ebb2352`](https://github.com/wevm/wagmi/commit/ebb2352375e05e52d0bcf6ae1a60ac4e798bf29f)]:
+  - @wagmi/core@2.22.0
+
 ## 5.11.2
 
 ### Patch Changes
